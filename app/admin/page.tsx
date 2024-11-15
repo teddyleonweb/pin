@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Lock } from 'lucide-react'
-import { useNotification } from '@/components//notification'
+import { useNotification } from '@/components/notification'
 
 export default function Home() {
   const [pin, setPin] = useState('')
