@@ -25,7 +25,7 @@ export function Notification({ message, onClose, duration = 5000 }: Notification
       <AlertCircle className="h-4 w-4" aria-hidden="true" />
       <span>{message}</span>
       <Button 
-        variant="outline" 
+        variant="ghost" 
         size="icon" 
         className="h-4 w-4 p-0 hover:bg-destructive-foreground/10"
         onClick={onClose}

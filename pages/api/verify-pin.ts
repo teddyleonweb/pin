@@ -16,8 +16,13 @@ export default async function handler(
       return res.status(400).json({ isValid: false })
     }
 
-    const isValid = await verifyPin(pin)
-    res.status(200).json({ isValid })
+    try {
+      const isValid = await verifyPin(pin)
+      res.status(200).json({ isValid })
+    } catch (error) {
+      console.error('Error al verificar el PIN:', error)
+      res.status(500).json({ isValid: false })
+    }
   } else {
     res.setHeader('Allow', ['POST'])
     res.status(405).end(`Method ${req.method} Not Allowed`)

@@ -15,28 +15,30 @@ export default async function handler(
     const { action, pin } = req.body
 
     if (typeof pin !== 'string') {
-      return res.status(400).json({ success: false, message: 'Invalid PIN format' })
+      return res.status(400).json({ success: false, message: 'Formato de PIN inválido' })
     }
 
     try {
       if (action === 'add') {
         await addPin(pin)
-        res.status(200).json({ success: true, message: 'PIN added successfully' })
+        res.status(200).json({ success: true, message: 'PIN añadido exitosamente' })
       } else if (action === 'remove') {
         await removePin(pin)
-        res.status(200).json({ success: true, message: 'PIN removed successfully' })
+        res.status(200).json({ success: true, message: 'PIN eliminado exitosamente' })
       } else {
-        res.status(400).json({ success: false, message: 'Invalid action' })
+        res.status(400).json({ success: false, message: 'Acción inválida' })
       }
     } catch (error) {
-      res.status(500).json({ success: false, message: 'Error processing request' })
+      console.error('Error al procesar la solicitud:', error)
+      res.status(500).json({ success: false, message: 'Error al procesar la solicitud' })
     }
   } else if (req.method === 'GET') {
     try {
       const pins = await listPins()
       res.status(200).json({ success: true, pins })
     } catch (error) {
-      res.status(500).json({ success: false, message: 'Error fetching PINs' })
+      console.error('Error al obtener los PINs:', error)
+      res.status(500).json({ success: false, message: 'Error al obtener los PINs' })
     }
   } else {
     res.setHeader('Allow', ['GET', 'POST'])

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Lock } from 'lucide-react'
-import { useNotification } from '@/components//notification'
+import { useNotification } from '@/components/notification'
 
 export default function Home() {
   const [pin, setPin] = useState('')
@@ -39,6 +39,7 @@ export default function Home() {
         showError('PIN incorrecto. Por favor, inténtelo de nuevo.')
       }
     } catch (error) {
+      console.error('Error al verificar el PIN:', error)
       showError('Hubo un error al verificar el PIN. Por favor, inténtelo de nuevo.')
     } finally {
       setIsLoading(false)
